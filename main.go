@@ -6,22 +6,22 @@ import (
 )
 
 func main() {
-	commands := argHandler()
-
-	for i := 0; i < len(commands); i++ {
-		if commands[i] == "connect" {
-			fmt.Println("connection detected")
-		}
-	}
+	argHandler()
 
 }
 
 func argHandler() []string {
 	all_args := os.Args
-	if len(os.Args) < 2 {
+
+	if len(os.Args) < 2 || os.Args[1] != "filesev" {
 		fmt.Println("Command not recognized")
 		os.Exit(0)
 	}
+
+	// switch all_args[1] {
+	// case condition:
+
+	// }
 
 	return all_args
 }
