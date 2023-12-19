@@ -17,13 +17,19 @@ func argHandler() {
 
 	useHelp := flag.Bool("help", false, "display available syntax")
 	useQuit := flag.Bool("q", false, "Exit the program")
-	flag.Parse()
 	// whenever we use flag it is always a pointer ("*")
 	// *useHelp returns false
 	// useHelp returns address 0xc00000a0c6
 
-	if *useHelp {
+	flag.Parse()
 
+	if flag.NArg() == 0 || flag.Arg(1) != "fsa" {
+		fmt.Println("correct command required")
+		os.Exit(1)
+	}
+
+	if *useHelp {
+		// logic if user enter "-help or --help arguments"
 		fmt.Println(
 			`
 			This is the default help message.
@@ -36,6 +42,8 @@ func argHandler() {
 	}
 
 	if *useQuit {
+
+		// logic if user enter "-q or --q arguments"
 		os.Exit(0)
 	}
 
