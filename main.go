@@ -15,6 +15,7 @@ func main() {
 // This functions handles logic behind argu or flag of cli commands.
 func argHandler() {
 
+	filename := flag.String("file", " ", "Path of a file")
 	useHelp := flag.Bool("help", false, "display available syntax")
 	useQuit := flag.Bool("q", false, "Exit the program")
 	// whenever we use flag it is always a pointer ("*")
@@ -23,10 +24,10 @@ func argHandler() {
 
 	flag.Parse()
 
-	if flag.NArg() == 0 || flag.Arg(1) != "fsa" {
-		fmt.Println("correct command required")
-		os.Exit(1)
-	}
+	// if flag.NArg() == 0 || flag.Arg(0) != "fsa" {
+	// 	fmt.Println("correct command required")
+	// 	os.Exit(1)
+	// }
 
 	if *useHelp {
 		// logic if user enter "-help or --help arguments"
@@ -46,5 +47,13 @@ func argHandler() {
 		// logic if user enter "-q or --q arguments"
 		os.Exit(0)
 	}
+
+	fmt.Println(*filename)
+	// if *filename == " " {
+	// 	fmt.Println("Provide a file path")
+	// 	os.Exit(1)
+	// } else {
+	// 	fmt.Println("This is the file path:", *filename)
+	// }
 
 }
