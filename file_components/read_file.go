@@ -7,7 +7,9 @@ import (
 
 // read the file from the given filepath
 func ReadFileFromPath(filepath *string) {
-	if file, err := os.Open(*filepath); err == nil {
+	file, err := os.Open(*filepath)
+	defer file.Close()
+	if err == nil {
 		fmt.Printf("file %v exist on path %v.", file, *filepath)
 	} else {
 		fmt.Println("Path does not contains any file.")
