@@ -6,13 +6,14 @@ import (
 )
 
 // read the file from the given filepath
-func ReadFileFromPath(filepath *string) {
+func ReadFileFromPath(filepath *string) string {
 	file, err := os.Open(*filepath)
 	defer file.Close()
-	if err == nil {
-		fmt.Printf("file %v exist on path %v.", file, *filepath)
-	} else {
+	if err != nil {
 		fmt.Println("Path does not contains any file.")
 		os.Exit(1)
+	} else {
+		fmt.Printf("file %v exist on path %v.", file, *filepath)
 	}
+	return file.Name()
 }

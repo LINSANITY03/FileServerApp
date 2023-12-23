@@ -5,16 +5,22 @@ import (
 	"os"
 )
 
-// This functions handles logic behind argu or flag of cli commands.
+// This functions handles logic behind args or flag of cli commands.
 func argHandler(filepath *string, useQuit *bool) {
 
 	// if flag.NArg() == 0 || flag.Arg(0) != "fsa" {
 	// 	fmt.Println("correct command required")
 	// 	os.Exit(1)
 	// }
+	if *useQuit {
 
-	quitFlag(useQuit)
-	file_components.ReadFileFromPath(filepath)
+		quitFlag(useQuit)
+	}
+
+	if *filepath != "" {
+
+		file_components.ReadFileFromPath(filepath)
+	}
 	// if *filename == " " {
 	// 	fmt.Println("Provide a file path")
 	// 	os.Exit(1)
