@@ -6,7 +6,7 @@ import (
 )
 
 // This functions handles logic behind args or flag of cli commands.
-func argHandler(filepath *string, useQuit *bool) {
+func argHandler(filepath *string, useQuit *bool, useViewFile *string) {
 
 	// if flag.NArg() == 0 || flag.Arg(0) != "fsa" {
 	// 	fmt.Println("correct command required")
@@ -21,12 +21,12 @@ func argHandler(filepath *string, useQuit *bool) {
 
 		file_components.ReadFileFromPath(filepath)
 	}
-	// if *filename == " " {
-	// 	fmt.Println("Provide a file path")
-	// 	os.Exit(1)
-	// } else {
-	// 	fmt.Println("This is the file path:", *filename)
-	// }
+
+	if *useViewFile != "" {
+		file_components.MarkDownRun(*useViewFile)
+
+	}
+
 }
 
 // this function when called exits the cli
