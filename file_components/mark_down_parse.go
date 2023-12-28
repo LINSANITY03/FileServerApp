@@ -2,6 +2,7 @@ package file_components
 
 import (
 	"bytes"
+	"flag"
 	"fmt"
 	"os"
 
@@ -26,20 +27,23 @@ const (
 
 // This function reads the content of a file and write to a html file.
 // the created file name will be in a temp file.
-// Prints the location of the created file
+// Prints the location of the created file.
 func MarkDownRun(filename string) error {
 	// Read all the data from the input file and check for errors
 	input, err := os.ReadFile(filename)
 	if err != nil {
+		flag.Usage()
 		return err
 	}
 	htmlData := parseContent(input)
 	// Create temporary file and check for errors
 	temp, err := os.CreateTemp("", "mdp*.html")
 	if err != nil {
+		flag.Usage()
 		return err
 	}
 	if err := temp.Close(); err != nil {
+		flag.Usage()
 		return err
 	}
 	outName := temp.Name()

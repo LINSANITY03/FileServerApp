@@ -1,6 +1,7 @@
 package file_components
 
 import (
+	"flag"
 	"fmt"
 	"os"
 )
@@ -11,6 +12,7 @@ func ReadFileFromPath(filepath *string) string {
 	defer file.Close()
 	if err != nil {
 		fmt.Println("Path does not contains any file.")
+		flag.Usage()
 		os.Exit(1)
 	} else {
 		fmt.Printf("file %v exist on path %v.", file, *filepath)

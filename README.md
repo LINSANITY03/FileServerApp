@@ -12,6 +12,8 @@ This is a command-line interface written in Golang programming language.
 
 ## Run the cli
 
+Open the terminal and run the command below.
+
 ```
 git clone https://github.com/LINSANITY03/FileServerApp.git
 go run . [options]
@@ -19,6 +21,9 @@ go run . [options]
 
 **options:**
 
-- --help or -help: Get all the details regarding cli.
-- --file or -file: Enter the file you want to read.
-- --q or -q: Quit the application
+- -file string :
+  Path of a file
+- -q : Exit the program
+- -vf string :
+  View the content of a file
+- -h : Get all the details regarding cli.
