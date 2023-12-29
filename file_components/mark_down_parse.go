@@ -35,7 +35,7 @@ func MarkDownRun(filename string) error {
 		flag.Usage()
 		return err
 	}
-	htmlData := parseContent(input)
+	htmlData := ParseContent(input)
 	// Create temporary file and check for errors
 	temp, err := os.CreateTemp("", "mdp*.html")
 	if err != nil {
@@ -53,7 +53,7 @@ func MarkDownRun(filename string) error {
 }
 
 // Input file content are added to a buffer and returned.
-func parseContent(input []byte) []byte {
+func ParseContent(input []byte) []byte {
 	// Parse the markdown file through blackfriday and bluemonday
 	// to generate a valid and safe HTML
 	output := blackfriday.Run(input)
