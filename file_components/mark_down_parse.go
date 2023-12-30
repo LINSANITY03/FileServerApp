@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"os/exec"
 
 	"github.com/microcosm-cc/bluemonday"
 	"github.com/russross/blackfriday/v2"
@@ -28,7 +29,7 @@ const (
 // This function reads the content of a file and write to a html file.
 // the created file name will be in a temp file.
 // Prints the location of the created file.
-func MarkDownRun(filename string) error {
+func MarkDownRun(filename string, skipPrev bool) error {
 	// Read all the data from the input file and check for errors
 	input, err := os.ReadFile(filename)
 	if err != nil {
@@ -48,7 +49,14 @@ func MarkDownRun(filename string) error {
 	}
 	outName := temp.Name()
 	fmt.Println(outName)
-	return saveHTML(outName, htmlData)
+	if err := saveHTML(outName, htmlData); err != nil {
+		return err
+	}
+
+	if skipPrev {
+		return nil
+	}
+	return preview(outName)
 
 }
 
@@ -71,4 +79,9 @@ func ParseContent(input []byte) []byte {
 func saveHTML(outFname string, data []byte) error {
 	// Write the bytes to the file
 	return os.WriteFile(outFname, data, 0644)
+}
+
+// run the generated html file in browser
+func preview(fname string) error {
+	return exec.Command("cmd", "/c", "start", "", fname).Run()
 }

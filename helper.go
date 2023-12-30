@@ -2,11 +2,12 @@ package main
 
 import (
 	"file_transfer_protocol/file_components"
+	"flag"
 	"os"
 )
 
 // This functions handles logic behind args or flag of cli commands.
-func argHandler(filepath *string, useQuit *bool, useViewFile *string) {
+func argHandler(filepath *string, useQuit *bool, useViewFile *string, usePreview *bool) {
 
 	// if flag.NArg() == 0 || flag.Arg(0) != "fsa" {
 	// 	fmt.Println("correct command required")
@@ -22,9 +23,12 @@ func argHandler(filepath *string, useQuit *bool, useViewFile *string) {
 		file_components.ReadFileFromPath(filepath)
 	}
 
-	if *useViewFile != "" {
-		file_components.MarkDownRun(*useViewFile)
+	if *useViewFile == "" {
+		flag.Usage()
+		os.Exit(1)
 
+	} else {
+		file_components.MarkDownRun(*useViewFile, *usePreview)
 	}
 
 }
