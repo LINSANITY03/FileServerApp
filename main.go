@@ -9,7 +9,6 @@ func main() {
 	filepath, useQuit, useViewFile, usePreview := inputParams()
 
 	flag.Parse()
-
 	argHandler(filepath, useQuit, useViewFile, usePreview)
 
 }

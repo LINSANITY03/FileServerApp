@@ -25,6 +25,6 @@ go run . [options]
 - -file string :
   Path of a file
 - -q : Exit the program
-- -vf string :
-  View the content of a file
+- -vf string [-s]:
+  View the content of a file. Use s flag to view file in browser.
 - -h : Get all the details regarding cli.
