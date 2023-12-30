@@ -52,7 +52,7 @@ func MarkDownRun(filename string, skipPrev bool) error {
 	if err := saveHTML(outName, htmlData); err != nil {
 		return err
 	}
-
+	defer os.Remove(outName)
 	if skipPrev {
 		return nil
 	}

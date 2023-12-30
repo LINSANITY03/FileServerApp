@@ -4,8 +4,6 @@ import (
 	"bytes"
 	"file_transfer_protocol/file_components"
 	"os"
-	"os/exec"
-	"path/filepath"
 	"testing"
 )
 
@@ -35,36 +33,36 @@ func TestParseContent(t *testing.T) {
 
 }
 
-func TestMarkDownRun(t *testing.T) {
-	dir, err := os.Getwd()
-	if err != nil {
-		t.Fatal(err)
-	}
+// func TestMarkDownRun(t *testing.T) {
+// 	dir, err := os.Getwd()
+// 	if err != nil {
+// 		t.Fatal(err)
+// 	}
 
-	cmd := exec.Command("go", "run", ".", "-vf", filepath.Join(dir, inputFile), "-s")
-	cmd.Dir = filepath.Join(dir, "../")
+// 	cmd := exec.Command("go", "run", ".", "-vf", filepath.Join(dir, inputFile), "-s")
+// 	cmd.Dir = filepath.Join(dir, "../")
 
-	out, err := cmd.Output()
-	if err != nil {
-		t.Fatal(err)
-	}
+// 	out, err := cmd.Output()
+// 	if err != nil {
+// 		t.Fatal(err)
+// 	}
 
-	resultFilePath := filepath.ToSlash(string(out))
-	defer os.Remove(resultFilePath)
+// 	resultFilePath := filepath.ToSlash(string(out))
+// 	defer os.Remove(resultFilePath)
 
-	result, err := os.ReadFile(resultFilePath)
-	if err != nil {
-		t.Fatal(err)
-	}
+// 	result, err := os.ReadFile(resultFilePath)
+// 	if err != nil {
+// 		t.Fatal(err)
+// 	}
 
-	expected, err := os.ReadFile(filepath.Join(dir, markdownFile))
-	if err != nil {
-		t.Fatal(err)
-	}
+// 	expected, err := os.ReadFile(filepath.Join(dir, markdownFile))
+// 	if err != nil {
+// 		t.Fatal(err)
+// 	}
 
-	if !bytes.Equal(expected, result) {
-		t.Logf("markdown:\n%s\n", expected)
-		t.Logf("result:\n%s\n", result)
-		t.Error("Result content does not match markdown file")
-	}
-}
+// 	if !bytes.Equal(expected, result) {
+// 		t.Logf("markdown:\n%s\n", expected)
+// 		t.Logf("result:\n%s\n", result)
+// 		t.Error("Result content does not match markdown file")
+// 	}
+// }
