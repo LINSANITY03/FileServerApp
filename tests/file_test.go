@@ -41,7 +41,7 @@ func TestMarkDownRun(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	cmd := exec.Command("go", "run", ".", "-vf", filepath.Join(dir, inputFile))
+	cmd := exec.Command("go", "run", ".", "-vf", filepath.Join(dir, inputFile), "-s")
 	cmd.Dir = filepath.Join(dir, "../")
 
 	out, err := cmd.Output()
