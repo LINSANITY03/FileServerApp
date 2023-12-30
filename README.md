@@ -1,7 +1,7 @@
 # File Transfer Protocol CLI
 
 ![Go versions](https://img.shields.io/badge/Golang-1.21.4-blue)
-![Build](https://github.com/LINSANITY03/FileServerApp/actions/workflows/go.yml/badge.svg)
+![Build](https://github.com/LINSANITY03/FileServerApp/actions/workflows/tests.yml/badge.svg)
 
 This is a command-line interface written in Golang programming language.
 
